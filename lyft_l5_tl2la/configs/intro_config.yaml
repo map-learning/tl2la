@@ -1,0 +1,52 @@
+# Config format schema number
+format_version: 4
+
+###################
+## Input raster parameters
+raster_params:
+  # raster image size [pixels]
+  raster_size:
+    - 224
+    - 224
+  # raster's spatial resolution [meters per pixel]: the size in the real world one pixel corresponds to.
+  pixel_size:
+    - 0.5
+    - 0.5
+  # From 0 to 1 per axis, [0.5,0.5] would show the ego centered in the image.
+  ego_center:
+    - 0.25
+    - 0.5
+  map_type: "py_semantic"
+
+  # the keys are relative to the dataset environment variable
+  satellite_map_key: "./aerial_map/aerial_map.png"
+  semantic_map_key: "./semantic_map/semantic_map.pb"
+  dataset_meta_key: "./semantic_map/meta.json"
+
+  # e.g. 0.0 include every obstacle, 0.5 show those obstacles with >0.5 probability of being
+  # one of the classes we care about (cars, bikes, peds, etc.)
+  filter_agents_threshold: 0.5
+
+  # whether to completely disable traffic light faces in the semantic rasterizer
+  disable_traffic_light_faces: False
+
+  # When set to True, the rasterizer will set the raster origin at bottom left,
+  # i.e. vehicles are driving on the right side of the road.
+  set_origin_to_bottom: True
+
+###################
+## Data loader options
+val_data_loader:
+  key: "./complete/sample/sample.zarr"
+  batch_size: 12
+  shuffle: False
+  num_workers: 16
+
+################### 
+## Preprocessed Data loader options
+## Adapt the filepath and name if required
+preprocessed_data_loader:
+  tls_scene_indices: "./dataset/preprocessed_info/tls_scene_indices_train1.pkl"
+  junction_branch_to_lane: "./dataset/preprocessed_info/minimal_junction_branch_to_lane.csv"
+  frame_lane_pos: "./dataset/preprocessed_info/frame_lane_df.pkl"
+  lanegraph: "./dataset/preprocessed_info/lanegraph_df.pkl"

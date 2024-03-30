@@ -1,0 +1,9 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Weber"
+  given-names: "Andreas"
+  orcid: "https://orcid.org/0009-0004-1672-430X"
+title: "tl2la: Semantic Map Learning of Traffic Light to Lane Assignment based on Motion Data using the Lyft Level 5 Dataset"
+date-released: 2023-10-01
+url: "https://github.com/map-learning/tl2la"
